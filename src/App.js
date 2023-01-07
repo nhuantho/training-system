@@ -6,6 +6,7 @@ import Login from "./Component/User/Login";
 import Register from "./Component/User/Register";
 import CourseItem from "./Component/Home/Course/CourseItem";
 import CourseDetail from "./Component/Home/Course/CourseDetail";
+import AddCourse from "./Component/Admin/ActionCourse/AddCourse";
 import Teacher from "./Component/Teacher/Teacher";
 import Admin from "./Component/Admin/Admin";
 import QLCC from "./Component/QLCC/QLCC";
@@ -65,6 +66,7 @@ export default function App() {
               <Route path="/dangnhap" element={<Login />} />
               <Route path="/dangky" element={<Register />} />
               <Route path="/chitietkhoahoc" element={<CourseDetail />} />
+              <Route path="/themkhoahoc" element={<AddCourse />} />
               <Route path="/giangvien" element={<Teacher />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/qlcc" element={<QLCC />} />
