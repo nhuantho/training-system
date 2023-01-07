@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useNavigate } from "react-router-dom";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, InputNumber } from "antd";
 import axios from "axios";
 import swal from "sweetalert";
 export default function AddCourse() {
@@ -92,7 +92,7 @@ export default function AddCourse() {
             <Input placeholder="Nhập TrainerInfo" />
           </Form.Item>
           <Form.Item name="ListOfPreCourses" label="ListOfPreCourses">
-            <Input placeholder="Nhập ListOfPreCourses" />
+            <InputNumber placeholder="Nhập ListOfPreCourses" />
           </Form.Item>
           <Form.Item name="Type" label="Type">
             <Input placeholder="Nhập Type" />
