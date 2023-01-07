@@ -8,8 +8,7 @@ import { useAppContext } from "../../App";
 import Course from "./Course/Course";
 export default function Home() {
 	const navigate = useNavigate();
-	const { setUser } = useAppContext();
-	const [courses, setCourse] = useState([]);
+	const { user } = useAppContext();
 
 	return (
 		<div style={{ textAlign: "center", backgroundColor: "antiquewhite" }}>

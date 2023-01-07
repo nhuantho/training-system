@@ -13,27 +13,30 @@ export default function Login() {
 	const checkTTNguoiDungByTK = async (values) => {
 		axios({
 			method: "post",
-			url: "http://localhost:8888/api/checkTTNguoiDungByTK",
+			url: "http://localhost:8080/api/v1/auth/signin",
 			data: {
-				taiKhoan: values?.username,
-				matKhau: values?.password,
+				Username: values?.username,
+				Password: values?.password,
 			},
 		})
 			.then((res) => {
-				if (res?.data?.taikhoan == null) {
+				if (
+					res?.data === "Wrong password!" ||
+					res?.data === "Username Not Found!"
+				) {
 					swal({
-						title: "Tài khoản không tồn tại",
+						title: "Tài khoản mật khẩu không tồn tại!",
 						icon: "warning",
 						dangerMode: true,
 					});
 				} else {
-					if (res?.data?.idnguoidunght === "QL") {
-						navigate("/quanly");
-					} else if (res?.data?.idnguoidunght === "NV") {
-						navigate("/nhanvien");
-					} else if (res?.data?.idnguoidunght === "NGY") {
-						navigate("/nguoigopy");
-					} else if (res?.data?.idnguoidunght === "NNBN") {
+					if (res?.data === "Login successfully with role: giangvien") {
+						navigate("/giangvien");
+					} else if (res?.data === "Login successfully with role: admin") {
+						navigate("/admin");
+					} else if (res?.data === "Login successfully with role: qlcc") {
+						navigate("/qlcc");
+					} else if (res?.data === "Login successfully with role: hocvien") {
 						navigate("/");
 					}
 					setUser(res?.data);
