@@ -5,6 +5,9 @@ import Login from "./Component/User/Login";
 import Register from "./Component/User/Register";
 import CourseItem from "./Component/Home/Course/CourseItem";
 import CourseDetail from "./Component/Home/Course/CourseDetail";
+import Teacher from "./Component/Teacher/Teacher";
+import Admin from "./Component/Admin/Admin";
+import QLCC from "./Component/QLCC/QLCC";
 export const AppContext = createContext({
 	user: {},
 	setUser: () => {},
@@ -45,8 +48,10 @@ export default function App() {
 							<Route path='/khoahoc' element={<CourseItem />} />
 							<Route path='/dangnhap' element={<Login />} />
 							<Route path='/dangky' element={<Register />} />
-							<Route path='/dangky' element={<Register />} />
 							<Route path='/chitietkhoahoc' element={<CourseDetail />} />
+							<Route path='/giangvien' element={<Teacher />} />
+							<Route path='/admin' element={<Admin />} />
+							<Route path='/qlcc' element={<QLCC />} />
 						</Routes>
 					</div>
 				</Router>
