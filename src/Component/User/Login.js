@@ -10,6 +10,20 @@ export default function Login() {
 	const navigate = useNavigate();
 	const { setUser } = useAppContext();
 
+	const checkUser = async (username) => {
+		axios({
+			method: "get",
+			url: "http://localhost:8080/api/v1/auth/" + username,
+		})
+			.then((res) => {
+				setUser(res?.data);
+				console.log(res?.data);
+			})
+			.catch((err) => {
+				console.log("Đây là lỗi", err);
+			});
+	};
+
 	const checkTTNguoiDungByTK = async (values) => {
 		axios({
 			method: "post",
@@ -39,7 +53,7 @@ export default function Login() {
 					} else if (res?.data === "Login successfully with role: hocvien") {
 						navigate("/");
 					}
-					setUser(res?.data);
+					checkUser(values?.username);
 				}
 			})
 			.catch((err) => {

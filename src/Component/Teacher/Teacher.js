@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useAppContext } from "../../App";
-import axios from "axios";
+import React from "react";
+
 export default function Teacher() {
-  return <div>giang vien </div>;
+	return (
+		<div>
+			<div style={{ fontSize: "2rem", marginTop: 60 }}>Teacher</div>
+		</div>
+	);
 }
