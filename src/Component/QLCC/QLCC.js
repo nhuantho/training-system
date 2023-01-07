@@ -5,6 +5,7 @@ import { useAppContext } from "../../App";
 import { LogoutOutlined, LoginOutlined } from "@ant-design/icons";
 import Courses from "./Courses/Courses";
 import Skills from "./Skills/Skills";
+import Level from "./Level/Level";
 
 const { Header, Content } = Layout;
 
@@ -144,10 +145,19 @@ export default function QLCC() {
 											}}>
 											Tạo mới khoá học
 										</Button>
+										<Button
+											onClick={() => setIdx(3)}
+											style={{
+												backgroundColor: idx === 3 ? "#008bfc" : "#fff",
+												color: idx === 3 ? "#fff" : "#000",
+												marginTop: 10,
+											}}>
+											Học viên cùng level
+										</Button>
 									</div>
 								</div>
 								<div style={{ marginLeft: 220, marginTop: 20 }}>
-									{idx === 1 ? <Skills /> : <Courses />}
+									{idx === 1 ? <Skills /> : idx === 2 ? <Courses /> : <Level />}
 								</div>
 							</div>
 						</div>
