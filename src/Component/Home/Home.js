@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form, Input } from "antd";
 import { LoginOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import axios from "axios";
 import { useAppContext } from "../../App";
-
+import Course from "./Course/Course";
 export default function Home() {
 	const navigate = useNavigate();
 	const { setUser } = useAppContext();
+	const [courses, setCourse] = useState([]);
 
 	return (
-		<div style={{ textAlign: "center" }}>
+		<div style={{ textAlign: "center", backgroundColor: "antiquewhite" }}>
 			<div
 				style={{
 					minHeight: "100vh",
@@ -20,7 +21,8 @@ export default function Home() {
 					alignItems: "center",
 					justifyContent: "center",
 				}}>
-				Home
+				<h2 style={{ marginTop: 100 }}>Danh Sách Các Khóa Học </h2>
+				<Course />
 			</div>
 		</div>
 	);
