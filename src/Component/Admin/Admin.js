@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useAppContext } from "../../App";
+import { Navigation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Form } from "antd";
 export default function Admin() {
+  const Navigation = useNavigate();
   const columns = [
     {
       title: "ID",
@@ -85,8 +86,13 @@ export default function Admin() {
           margin: "20px 0 0 300px",
         }}
       >
-        Thêm Khóa Hóa Học
-        <Form />
+        <div
+          style={{ cursor: "pointer" }}
+          onClick={() => Navigation("/themkhoahoc")}
+        >
+          {" "}
+          Thêm Khóa Hóa Học
+        </div>
       </div>
     </div>
   );
