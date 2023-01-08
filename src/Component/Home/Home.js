@@ -1,20 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { Button, Form, Input } from "antd";
-import { LoginOutlined } from "@ant-design/icons";
+import React from "react";
+import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
-import swal from "sweetalert";
-import axios from "axios";
 import { useAppContext } from "../../App";
 import Course from "./Course/Course";
 export default function Home() {
 	const navigate = useNavigate();
-	const { user } = useAppContext();
+	const { user, setUser } = useAppContext();
 
 	return (
 		<div style={{ textAlign: "center", backgroundColor: "antiquewhite" }}>
+			<div style={{ marginLeft: 900, paddingTop: 20 }}>
+				{user === null ? (
+					<Button onClick={() => navigate("/dangnhap")}>Đăng nhập</Button>
+				) : (
+					<Button onClick={() => setUser(null)}>Đăng xuất</Button>
+				)}
+			</div>
+
 			<div
 				style={{
-					minHeight: "100vh",
+					minHeight: "95vh",
 					display: "flex",
 					flexDirection: "column",
 					alignItems: "center",

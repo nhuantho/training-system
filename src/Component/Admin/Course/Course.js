@@ -2,6 +2,7 @@ import { Button, Form, Input, Table } from "antd";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import swal from "sweetalert";
+import UpdateCourse from "./UpdateCourse";
 
 const columns = [
 	{
@@ -171,14 +172,10 @@ export default function Course() {
 							<p>HoursOfPractice: {course?.HoursOfPractice}</p>
 							<p>TrainerInfo: {course?.TrainerInfo}</p>
 							<p>NumberOfEnrollment: {course?.NumberOfEnrollment}</p>
-							{/* <h1>Đổi mật khẩu</h1> */}
-							{/* <Input.Password onChange={onchange} />
-							<Button onClick={() => updateAccount()}>
-								Bạn có muốn đổi mật khẩu
-							</Button> */}
 							<Button onClick={() => removeCourseById(course?._id)}>
 								Bạn có muốn xóa khóa học
 							</Button>
+							<UpdateCourse id={course?._id} />
 						</div>
 					)}
 				</div>

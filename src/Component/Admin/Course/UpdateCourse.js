@@ -4,11 +4,11 @@ import { LoginOutlined } from "@ant-design/icons";
 import swal from "sweetalert";
 import axios from "axios";
 
-export default function AddCourse() {
-	const addCourse = async (values) => {
+export default function UpdateCourse({ id }) {
+	const UpdateCourse = async (values) => {
 		axios({
-			method: "post",
-			url: "http://localhost:8080/api/v1/courses",
+			method: "put",
+			url: "http://localhost:8080/api/v1/courses/" + id,
 			data: {
 				CourseName: values?.CourseName,
 				Duration: values?.Duration,
@@ -35,7 +35,7 @@ export default function AddCourse() {
 	};
 
 	const onFinish = (values) => {
-		addCourse(values);
+		UpdateCourse(values);
 	};
 	const onFinishFailed = (errorInfo) => {
 		swal({
@@ -182,7 +182,7 @@ export default function AddCourse() {
 								span: 16,
 							}}>
 							<Button icon={<LoginOutlined />} type='primary' htmlType='submit'>
-								Thêm khóa học
+								Sửa khóa học
 							</Button>
 						</Form.Item>
 					</Form>

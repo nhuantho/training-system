@@ -6,6 +6,7 @@ import { LogoutOutlined, LoginOutlined } from "@ant-design/icons";
 import Course from "./Course/Course";
 import Student from "./Student/Student";
 import AddStudent from "./Student/AddStudent";
+import AddCourse from "./Course/AddCourse";
 
 const { Header, Content } = Layout;
 
@@ -137,6 +138,15 @@ export default function Admin() {
 											Khóa học
 										</Button>
 										<Button
+											onClick={() => setIdx(4)}
+											style={{
+												backgroundColor: idx === 4 ? "#008bfc" : "#fff",
+												color: idx === 4 ? "#fff" : "#000",
+												marginTop: 10,
+											}}>
+											Thêm khóa học
+										</Button>
+										<Button
 											onClick={() => setIdx(2)}
 											style={{
 												backgroundColor: idx === 2 ? "#008bfc" : "#fff",
@@ -161,8 +171,10 @@ export default function Admin() {
 										<Course />
 									) : idx === 2 ? (
 										<Student />
-									) : (
+									) : idx === 3 ? (
 										<AddStudent />
+									) : (
+										<AddCourse />
 									)}
 								</div>
 							</div>
