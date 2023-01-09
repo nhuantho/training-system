@@ -1,99 +1,189 @@
-import React, { useState, useEffect } from "react";
-import { Navigation, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { Form } from "antd";
+import { Button, Layout, Menu, Result } from "antd";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../../App";
+import { LogoutOutlined, LoginOutlined } from "@ant-design/icons";
+import Course from "./Course/Course";
+import Student from "./Student/Student";
+import AddStudent from "./Student/AddStudent";
+
+const { Header, Content } = Layout;
+
 export default function Admin() {
-  const Navigation = useNavigate();
-  const columns = [
-    {
-      title: "ID",
-      dataIndex: "id",
-      key: "id",
-    },
-    {
-      title: "Course Name",
-      dataIndex: "courseName",
-      key: "courseName",
-    },
-    {
-      title: "Duration",
-      dataIndex: "duration",
-      key: "duration",
-    },
-    {
-      title: "Hours Of Theory",
-      dataIndex: "hoursOfTheory",
-      key: "hoursOfTheory",
-    },
-    {
-      title: "Hours Of Practice",
-      dataIndex: "hoursOfPractice",
-      key: "Hours Of Practice",
-    },
-    {
-      title: "Số Lượng",
-      dataIndex: "trainerInfo",
-      key: "trainerInfo",
-    },
-  ];
-  const [courses, setCourses] = useState([]);
-  useEffect(() => {
-    getAllCourses();
-  }, []);
-  const getAllCourses = async () => {
-    axios({
-      method: "get",
-      url: "http://localhost:8080/api/v1/courses",
-    })
-      .then((res) => {
-        setCourses(res?.data);
-      })
-      .catch((err) => {
-        console.log("Đây là lỗi", err);
-      });
+  const navigate = useNavigate();
+  const { user, setUser } = useAppContext();
+  const [idx, setIdx] = useState(1);
+
+  const logOut = () => {
+    setUser(null);
   };
-  console.log(courses);
+
   return (
     <div>
-      <div style={{ fontSize: "2rem", marginTop: 60 }}>Xem danh sach</div>
-      <table style={{ height: "100%", width: 700, marginLeft: 40 }}>
-        {courses.map((c, index) => {
-          return (
-            <tr
+      {user == null ? (
+        <div style={{ textAlign: "center" }}>
+          <div
+            style={{
+              minHeight: "100vh",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Result
+              title="Bạn cần đăng nhập để trải nghiệm dịch vụ"
+              extra={
+                <Button
+                  icon={<LoginOutlined />}
+                  type="primary"
+                  key="console"
+                  onClick={() => navigate("/dangnhap")}
+                >
+                  Đăng nhập
+                </Button>
+              }
+            />
+          </div>
+        </div>
+      ) : (
+        <Layout>
+          <Header
+            style={{
+              zIndex: 5,
+              position: "fixed",
+              right: 0,
+              left: 0,
+              top: 0,
+              backgroundColor: "rgb(2, 173, 252)",
+              borderBottomLeftRadius: 10,
+              borderBottomRightRadius: 10,
+            }}
+          >
+            <div
               style={{
-                display: "flex",
-                border: "1px solid",
-                justifyContent: "space-between",
-                height: 120,
+                height: 31,
+                background: "rgba(255, 255, 255, 0.3)",
+                margin: "16px 24px 16px 0px",
+                float: "left",
               }}
             >
-              <div key={index} style={{ marginLeft: 20, fontSize: "20px" }}>
-                <p> Tên học phần: {c?.CourseName}</p>
-                <p>Thời gian: {c?.Duration}</p>
-                <p>GIảng viên: {c?.TrainerInfo}</p>
+              <p
+                style={{
+                  padding: "0px 10px 0px 10px",
+                  marginTop: -15,
+                  color: "#fff",
+                }}
+              >
+                {"Xin chào " + user?.Username + "!"}
+              </p>
+            </div>
+            <Menu
+              theme="light"
+              mode="horizontal"
+              defaultSelectedKeys={["2"]}
+              style={{
+                lineHeight: "64px",
+                float: "right",
+                backgroundColor: "rgb(2, 173, 252)",
+              }}
+            >
+              <Menu.Item key="1">
+                <Button
+                  icon={<LogoutOutlined />}
+                  style={{ background: "rgb(2, 173, 252)", color: "#fff" }}
+                  onClick={() => logOut()}
+                >
+                  Đăng xuất
+                </Button>
+              </Menu.Item>
+            </Menu>
+          </Header>
+
+          <Content
+            style={{
+              padding: "0 50px 0px 0",
+              marginTop: 54,
+            }}
+          >
+            <div>
+              <div
+                style={{
+                  background: "#fff",
+                  minHeight: 585,
+                  display: "flex",
+                }}
+              >
+                <div
+                  style={{
+                    minHeight: 400,
+                    background: "rgba(0, 0, 0, 0.04)",
+                    width: 200,
+                    display: "flex",
+                    alignItems: "center",
+                    flexDirection: "column",
+                    padding: "10px 10px 10px 10px",
+                    marginTop: 64,
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    bottom: 0,
+                  }}
+                >
+                  <h3>Chức năng quản lý</h3>
+                  <div
+                    style={{
+                      display: "flex",
+                      width: 200,
+                      flexDirection: "column",
+                      padding: 20,
+                    }}
+                  >
+                    <Button
+                      onClick={() => setIdx(1)}
+                      style={{
+                        backgroundColor: idx === 1 ? "#008bfc" : "#fff",
+                        color: idx === 1 ? "#fff" : "#000",
+                      }}
+                    >
+                      Khóa học
+                    </Button>
+                    <Button
+                      onClick={() => setIdx(2)}
+                      style={{
+                        backgroundColor: idx === 2 ? "#008bfc" : "#fff",
+                        color: idx === 2 ? "#fff" : "#000",
+                        marginTop: 10,
+                      }}
+                    >
+                      Học viên
+                    </Button>
+                    <Button
+                      onClick={() => setIdx(3)}
+                      style={{
+                        backgroundColor: idx === 3 ? "#008bfc" : "#fff",
+                        color: idx === 3 ? "#fff" : "#000",
+                        marginTop: 10,
+                      }}
+                    >
+                      Thêm học viên
+                    </Button>
+                  </div>
+                </div>
+                <div style={{ marginLeft: 220, marginTop: 20 }}>
+                  {idx === 1 ? (
+                    <Course />
+                  ) : idx === 2 ? (
+                    <Student />
+                  ) : (
+                    <AddStudent />
+                  )}
+                </div>
               </div>
-              <div style={{ marginRight: 30 }}>xoa</div>
-            </tr>
-          );
-        })}
-      </table>
-      <div
-        style={{
-          fontSize: "20px",
-          border: "1px solid",
-          height: 30,
-          width: 200,
-          margin: "20px 0 0 300px",
-        }}
-      >
-        <div
-          style={{ cursor: "pointer" }}
-          onClick={() => Navigation("/themkhoahoc")}
-        >
-          {" "}
-          Thêm Khóa Hóa Học
-        </div>
-      </div>
+            </div>
+          </Content>
+        </Layout>
+      )}
     </div>
   );
 }
