@@ -7,11 +7,14 @@ import CourseDetail from "./Component/Home/Course/CourseDetail";
 import Teacher from "./Component/Teacher/Teacher";
 import Admin from "./Component/Admin/Admin";
 import QLCC from "./Component/QLCC/QLCC";
+import Information from "./Component/Home/Information/Information";
 export const AppContext = createContext({
 	user: {},
 	setUser: () => {},
 	course: {},
 	setCourse: () => {},
+	name: {},
+	setName: () => {},
 });
 
 export const useAppContext = () => useContext(AppContext);
@@ -19,6 +22,7 @@ export const useAppContext = () => useContext(AppContext);
 export default function App() {
 	const [user, setUser] = useState(null);
 	const [course, setCourse] = useState();
+	const [name, setName] = useState(null);
 	return (
 		<div>
 			<AppContext.Provider
@@ -27,6 +31,8 @@ export default function App() {
 					setUser,
 					course,
 					setCourse,
+					name,
+					setName,
 				}}>
 				<Router>
 					<div>
@@ -38,6 +44,7 @@ export default function App() {
 							<Route path='/giangvien' element={<Teacher />} />
 							<Route path='/admin' element={<Admin />} />
 							<Route path='/qlcc' element={<QLCC />} />
+							<Route path='/thongtin' element={<Information />} />
 						</Routes>
 					</div>
 				</Router>

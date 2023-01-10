@@ -3,9 +3,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../App";
 import { LogoutOutlined, LoginOutlined } from "@ant-design/icons";
-import Courses from "./Courses/Courses";
 import Skills from "./Skills/Skills";
 import Level from "./Level/Level";
+import AddCourse from "./Courses/AddCourse";
+import AddSkills from "./Skills/AddSkills";
+import AddSkillForCourse from "./Courses/AddSkillForCourse";
 
 const { Header, Content } = Layout;
 
@@ -120,7 +122,7 @@ export default function QLCC() {
 										left: 0,
 										bottom: 0,
 									}}>
-									<h3>Chức năng quản lý</h3>
+									<h3>Chức năng quản lý cấp cao</h3>
 									<div
 										style={{
 											display: "flex",
@@ -137,13 +139,31 @@ export default function QLCC() {
 											Chỉnh sửa kĩ năng
 										</Button>
 										<Button
+											onClick={() => setIdx(4)}
+											style={{
+												backgroundColor: idx === 4 ? "#008bfc" : "#fff",
+												color: idx === 4 ? "#fff" : "#000",
+												marginTop: 10,
+											}}>
+											Thêm kĩ năng (.net)
+										</Button>
+										<Button
+											onClick={() => setIdx(5)}
+											style={{
+												backgroundColor: idx === 5 ? "#008bfc" : "#fff",
+												color: idx === 5 ? "#fff" : "#000",
+												marginTop: 10,
+											}}>
+											Thêm kĩ năng cho khóa học(.net)
+										</Button>
+										<Button
 											onClick={() => setIdx(2)}
 											style={{
 												backgroundColor: idx === 2 ? "#008bfc" : "#fff",
 												color: idx === 2 ? "#fff" : "#000",
 												marginTop: 10,
 											}}>
-											Tạo mới khoá học
+											Tạo mới khoá học(.net)
 										</Button>
 										<Button
 											onClick={() => setIdx(3)}
@@ -157,7 +177,17 @@ export default function QLCC() {
 									</div>
 								</div>
 								<div style={{ marginLeft: 220, marginTop: 20 }}>
-									{idx === 1 ? <Skills /> : idx === 2 ? <Courses /> : <Level />}
+									{idx === 1 ? (
+										<Skills />
+									) : idx === 2 ? (
+										<AddCourse />
+									) : idx === 3 ? (
+										<Level />
+									) : idx === 4 ? (
+										<AddSkills />
+									) : (
+										<AddSkillForCourse />
+									)}
 								</div>
 							</div>
 						</div>

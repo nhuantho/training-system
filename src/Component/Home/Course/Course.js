@@ -22,28 +22,30 @@ export default function Course() {
 	};
 
 	return (
-		<div
-			className='wrapper'
-			style={{
-				display: "flex",
-				flexWrap: "wrap",
-				justifyContent: "center",
-			}}>
-			{course.map((c, index) => {
-				console.log(typeof c?.CourseName);
-				return (
-					<CourseItem
-						key={index}
-						id={c?._id}
-						CourseName={c?.CourseName}
-						Duration={c?.Duration}
-						HoursOfTheory={c?.HoursOfTheory}
-						HoursOfPractice={c?.HoursOfPractice}
-						Type={c?.Type}
-						Description={c?.Description}
-					/>
-				);
-			})}
+		<div>
+			<div
+				className='wrapper'
+				style={{
+					display: "flex",
+					flexWrap: "wrap",
+					justifyContent: "center",
+				}}>
+				{course.map((c, index) => {
+					console.log(typeof c?.CourseName);
+					return (
+						<CourseItem
+							key={index}
+							id={c?._id}
+							CourseName={c?.CourseName}
+							Duration={c?.Duration}
+							HoursOfTheory={c?.HoursOfTheory}
+							HoursOfPractice={c?.HoursOfPractice}
+							Type={c?.Type}
+							Description={c?.Description}
+						/>
+					);
+				})}
+			</div>
 		</div>
 	);
 }

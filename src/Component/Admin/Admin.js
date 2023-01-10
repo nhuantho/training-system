@@ -7,6 +7,7 @@ import Course from "./Course/Course";
 import Student from "./Student/Student";
 import AddStudent from "./Student/AddStudent";
 import AddCourse from "./Course/AddCourse";
+import StudentNet from "./Student/StudentNet";
 
 const { Header, Content } = Layout;
 
@@ -121,7 +122,7 @@ export default function Admin() {
 										left: 0,
 										bottom: 0,
 									}}>
-									<h3>Chức năng quản lý</h3>
+									<h3>Chức năng admin</h3>
 									<div
 										style={{
 											display: "flex",
@@ -164,6 +165,15 @@ export default function Admin() {
 											}}>
 											Thêm học viên
 										</Button>
+										<Button
+											onClick={() => setIdx(5)}
+											style={{
+												backgroundColor: idx === 5 ? "#008bfc" : "#fff",
+												color: idx === 5 ? "#fff" : "#000",
+												marginTop: 10,
+											}}>
+											{"Học viên(.net)"}
+										</Button>
 									</div>
 								</div>
 								<div style={{ marginLeft: 220, marginTop: 20 }}>
@@ -173,8 +183,10 @@ export default function Admin() {
 										<Student />
 									) : idx === 3 ? (
 										<AddStudent />
-									) : (
+									) : idx === 4 ? (
 										<AddCourse />
+									) : (
+										<StudentNet />
 									)}
 								</div>
 							</div>
